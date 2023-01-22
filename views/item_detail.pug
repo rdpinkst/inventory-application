@@ -1,0 +1,20 @@
+extends layout 
+
+block content 
+  h1= title
+
+  div.flex
+    div
+      p #[strong Description:] #{data.description} 
+      p #[strong Category:] #{data.category.name}
+      p #[strong Price:] #{data.price}
+      p #[strong Number-in-stock:] #{data.number_in_stock}
+  
+    if(data.picture) 
+      img(src=`http://localhost:3000/images/${data.picture}`)
+
+
+  hr
+  p
+    a.btn.btn-danger(href=data.url+'/delete') Delete
+    a.btn.btn-success.ml-3(href=data.url+'/update') Update

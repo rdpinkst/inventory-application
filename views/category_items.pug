@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+  h1= title
+
+  p #[strong Description:] #{category_name.description}
+  div.flex
+    ul 
+      each item in item_category 
+        li 
+          a(href=item.url) #{item.name}
+      else 
+        li There are no items.
+    if(category_name.picture)
+      img(src=`http://localhost:3000/images/${category_name.picture}`)
+  hr
+  p 
+    a.btn.btn-danger(href=category_name.url+'/delete') Delete
+    a.btn.btn-success.ml-3(href=category_name.url+'/update') Update

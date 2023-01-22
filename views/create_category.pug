@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(method='POST' action='' enctype='multipart/form-data')
+    div.form-group
+      label(for='name') #[strong Category:]
+      input#name.form-control(type='text', placeholder='New Category...' name='name' value=(undefined===category ? '' : category.name))
+    div.form-group
+      label(for='description') #[strong Description:]
+      input#description.form-control(type='text', placeholder='Category Description' name='description' value=(undefined===category ? '' : category.description))
+    div.form-group
+      label.form-label(for='form-file') #[strong Upload picture:]
+      input#form-file.form-control(type='file' name='picture' value=(undefined===category ? '' : category.picture))
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+   ul
+    for error in errors
+     li!= error.msg

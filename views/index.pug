@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} app. The following can have CRUD operations used on them.
+  ul 
+    li #[strong Categories:] #{data.category_count}
+    li #[strong Items:] #{data.item_count}

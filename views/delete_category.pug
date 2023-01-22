@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+  h1 Delete: #{category.name}
+  if (items.length > 0) 
+    p The following items must be deleted before this category can be deleted.
+  
+    ul 
+      each item in items 
+        li 
+          a(href=item.url) #{item.name}
+
+  else 
+    p Are you sure you want to deleted this category?
+
+    form(method="POST" action="")
+      div.form-group
+        input#categoryid.form-control(type="hidden" name="categoryid" required=true value=category._id)
+        button.btn.btn-primary(type="submit") Delete
+  
+  

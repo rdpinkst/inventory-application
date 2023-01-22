@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+  h1 Delete: #{item.name}
+
+  p #[strong Description:] #{item.description} 
+  p #[strong Category:] #{item.category.name}
+  p #[strong Price:] #{item.price}
+  p #[strong Number-in-stock:] #{item.number_in_stock}
+  hr
+  p Are you sure you want to delete #{item.name}?
+  form(method="POST" action="")
+    div.form-group
+      input#itemid.form-control(type="hidden" name="itemid" required=true value=item._id)
+      button.btn.btn-primary(type="submit") Delete

@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  form(method='POST' action='' enctype='multipart/form-data')
+    div.form-group
+      label(for='name') #[strong Item:]
+      input#name.form-control(type='text', placeholder='New Item' name='name' value=(undefined===item ? '' : item.name))
+    div.form-group 
+      label(for='description') #[strong Description:] 
+      input#description.form-control(type='text', placeholder='Describe the product' name='description' value=(undefined===item ? '' : item.description))
+    div.form-group
+      label(for='category-select') #[strong Category:]
+      select#category-select.form-control(type='select' placeholder='Select a Category' name='category' required=true)
+        each category in category_names 
+          option(value=category._id selected=(selected_category == category._id.toString() ? 'selected' : false)) #{category.name}
+    div.form-group
+      label(for="price") #[strong Price:] 
+      input#price.form-control(type='text', placeholder='Price of product' name='price' value=(undefined ===item ? '' : item.price ))
+    div.form-group
+      label(for='quantity') #[strong Number in Stock:] 
+      input#quantity.form-control(type='text', placeholder='Number in stock' name='number_in_stock' value=(undefined===item ? '' : item.number_in_stock))
+    div.form-group
+      label.form-label(for='form-file') #[strong Upload picture:]
+      input#form-file.form-control(type='file' name='picture' value=(undefined===item ? '' : item.picture))
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+   ul
+    for error in errors
+     li!= error.msg
